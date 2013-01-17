@@ -1,7 +1,6 @@
 package com.servisim.simulator.main;
 
 import javax.swing.BorderFactory;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -10,16 +9,17 @@ import javax.swing.event.ChangeListener;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ComponentAdapter;
+import java.awt.Panel;
 
 import com.servisim.simulator.gui.GridMap;
+import com.servisim.simulator.gui.utilities.SelectableLegendImage;
 
 public class Simulator {
 	
-	private static void createAndShowGUI() {
-		JFrame frame = new JFrame("Demographics Simulator");
+	JFrame frame = new JFrame("Demographics Simulator");
+	
+	public Simulator() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		JPanel mapPane = new JPanel(new BorderLayout());
 		mapPane.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder("Density Profile"),
@@ -30,7 +30,7 @@ public class Simulator {
         cellSizePane.setBorder(BorderFactory.createTitledBorder("Cell width in pixels"));
         
         JSlider cellSizer = new JSlider(10, 100, 10);
-        cellSizer.setSnapToTicks(true);
+        //cellSizer.setSnapToTicks(true);
         cellSizer.setMajorTickSpacing(10);
         cellSizer.setPaintTicks(true);
         cellSizer.setPaintLabels(true);
@@ -44,21 +44,15 @@ public class Simulator {
 		});
 
         cellSizePane.add(cellSizer);
-        
+        Panel selectableLegendImage = new Panel();
+        selectableLegendImage.add(new SelectableLegendImage());
+        mapPane.add(selectableLegendImage,BorderLayout.NORTH);
         mapPane.add(cellSizePane,BorderLayout.SOUTH);
         mapPane.add(gridMap,BorderLayout.CENTER);
  
         frame.getContentPane().add(mapPane);
         frame.pack();
         frame.setVisible(true);
-	}
-
-	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
 	}
 
 }

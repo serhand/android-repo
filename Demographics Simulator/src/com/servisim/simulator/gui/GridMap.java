@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 public class GridMap extends JComponent {
-	Image i = null;
-	Dimension grid = null;
+	private BufferedImage i = null;
+	private Dimension grid = null;
 
 	/**
 	 * 
@@ -23,13 +23,13 @@ public class GridMap extends JComponent {
 		try {
 			i = ImageIO.read(new File("resources/ist_population_density.bmp"));
 		} catch (IOException e) {
-			System.out.println("Error reading image : " + e.getMessage());
+			System.out.println("Error reading density map : " + e.getMessage());
 		}
 	}
 
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(500, 300);
+		return new Dimension(i.getWidth(), i.getHeight());
 	}
 
 	public void setGrid(Dimension d) {
