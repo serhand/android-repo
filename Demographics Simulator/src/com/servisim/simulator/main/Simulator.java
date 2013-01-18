@@ -11,8 +11,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Panel;
 
-import com.servisim.simulator.gui.GridMap;
+import com.servisim.simulator.gui.utilities.GridMap;
 import com.servisim.simulator.gui.utilities.SelectableLegendImage;
+import com.servisim.simulator.gui.view.LegendMapViewPanel;
+import com.servisim.simulator.gui.view.LegendSelectionViewPanel;
 
 public class Simulator {
 	
@@ -22,7 +24,7 @@ public class Simulator {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mapPane = new JPanel(new BorderLayout());
 		mapPane.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder("Density Profile"),
+                BorderFactory.createTitledBorder("Demographics Simulator"),
                 BorderFactory.createEmptyBorder(5,5,5,5)));
 		final GridMap gridMap = new GridMap();
 		gridMap.setGrid(new Dimension(10,10));
@@ -44,9 +46,9 @@ public class Simulator {
 		});
 
         cellSizePane.add(cellSizer);
-        Panel selectableLegendImage = new Panel();
-        selectableLegendImage.add(new SelectableLegendImage());
-        mapPane.add(selectableLegendImage,BorderLayout.NORTH);
+
+        mapPane.add(new LegendMapViewPanel(),BorderLayout.PAGE_START);
+        mapPane.add(new LegendSelectionViewPanel(),BorderLayout.BEFORE_FIRST_LINE);
         mapPane.add(cellSizePane,BorderLayout.SOUTH);
         mapPane.add(gridMap,BorderLayout.CENTER);
  

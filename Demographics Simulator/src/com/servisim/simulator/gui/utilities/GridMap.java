@@ -1,4 +1,4 @@
-package com.servisim.simulator.gui;
+package com.servisim.simulator.gui.utilities;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
